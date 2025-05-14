@@ -30,7 +30,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ duration, isPaused = false })
   }, [isPaused]);
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%'}} className='progress-bar'>
       <div style={{ width: `${progress}%`, border: '2px solid blue' }} />
     </div>
   );
