@@ -23,20 +23,20 @@ describe('Story Viewer', () => {
       .should('be.visible');
   });
 
-  // it('auto-advances to next story', () => {
-  //   cy.get('.profile-image').first().click();
+  it('auto-advances to next story', () => {
+    // cy.get('.profile-image').first().click();
 
-  //   cy.get('img[alt="story"]')
-  //     .invoke('attr', 'src')
-  //     .then((firstSrc) => {
-  //       cy.wait(6000); // Wait for auto-advance
-  //       cy.get('img[alt="story"]')
-  //         .invoke('attr', 'src')
-  //         .should((newSrc) => {
-  //           expect(newSrc).not.to.eq(firstSrc);
-  //         });
-  //     });
-  // });
+    cy.get('img[alt="story"]')
+      .invoke('attr', 'src')
+      .then((firstSrc) => {
+        cy.wait(10000); // Wait for auto-advance
+        cy.get('img[alt="story"]')
+          .invoke('attr', 'src')
+          .should((newSrc) => {
+            expect(newSrc).not.to.eq(firstSrc);
+          });
+      });
+  });
 
   // it('navigates back and forth on click', () => {
   //   cy.get('.profile-image').first().click();

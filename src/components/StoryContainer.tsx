@@ -60,8 +60,9 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
     startTimer();
   };
 
-  if (stories.length === 0) return null;
+  if (stories.length === 0 || !stories[currentIndex]) return null;
 
+  console.log('Current Story:', currentIndex, stories[currentIndex]);
   return (
     <div onClick={handleClick} ref={containerRef}>
       {isImageLoaded && (
@@ -72,7 +73,7 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
       )}
 
       <img
-        src={stories[currentIndex]?.imgUrl}
+        src={stories[currentIndex].imgUrl}
         alt="story"
         onLoad={handleImageLoad}
         style={{ width: '100%', height: '100%', objectFit: 'cover',  opacity: isImageLoaded ? 1 : 0,
