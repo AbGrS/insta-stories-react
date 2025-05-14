@@ -23,7 +23,7 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
   }, [currentIndex]);
 
   const startTimer = () => {
-    const duration = stories[currentIndex].duration || 5000;
+    const duration = stories[currentIndex]?.duration || 5000;
     timerRef.current = setTimeout(() => {
       nextStory();
     }, duration);
