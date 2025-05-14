@@ -1,0 +1,1 @@
+html{overflow:scroll;overflow-x:hidden}::-webkit-scrollbar{width:0;background:transparent}.profile-image{width:30px;height:30px;border-radius:50%}.stories_wrapper{display:flex;margin:10px;overflow-x:auto;cursor:pointer}body{margin:0;font-family:system-ui,sans-serif;background-color:#f0f0f0;overflow:hidden}img{max-width:100%;height:auto;display:block}
