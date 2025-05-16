@@ -1,0 +1,22 @@
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;  /* to make scrollbar invisible */
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.stories_wrapper{
+    display: flex;
+    margin: 10px;
+    overflow-x: auto;
+    cursor: pointer;
+}
+
