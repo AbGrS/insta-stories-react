@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <div>
       <StoryList onSelect={handleSelect} />
-      <StoryContainer stories={storyData}/>
+      {storyData.length ? <StoryContainer stories={storyData}/> : ''}
     </div>
   );
 };

@@ -13,12 +13,8 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setIsImageLoaded(false);
     setCurrentIndex(0);
   }, [stories]);
 
@@ -73,9 +69,6 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
     startTimer();
   };
 
-  if (stories.length === 0) return null;
-
- // console.log('Current Story:', currentIndex, stories[currentIndex]);
   return (
     <div onClick={handleClick} ref={containerRef}>
       {isImageLoaded && (
@@ -86,7 +79,7 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
       )}
 
       <img
-        src={stories[currentIndex].imgUrl}
+        src={`${stories[currentIndex].imgUrl}?id=${stories[currentIndex].id}`}
         alt="story"
         onLoad={handleImageLoad}
         style={{ width: '100%', height: '100%', objectFit: 'cover',  opacity: isImageLoaded ? 1 : 0,
