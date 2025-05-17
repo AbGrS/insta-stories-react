@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 import type { Story } from '../services/storyServices';
 import ProgressBar from './ProgressBar';
 
@@ -19,26 +19,39 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
   }, []);
 
   useEffect(() => {
+    setCurrentIndex(0);
+  }, [stories]);
+
+  useEffect(() => {
     setIsImageLoaded(false);
   }, [currentIndex]);
 
   const startTimer = () => {
     const duration = stories[currentIndex]?.duration || 5000;
+    if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       nextStory();
     }, duration);
   };
 
   const nextStory = () => {
-    if (currentIndex < stories.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-    }
+    setCurrentIndex((prev) => {
+      if (prev < stories.length - 1) {
+        return prev + 1;
+      }
+      return prev;
+    });
+    
   };
 
   const prevStory = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-    }
+    setCurrentIndex((prev) => {
+      if (prev > 0) {
+        return prev - 1;
+      }
+      return prev;
+    });
+    
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,9 +73,9 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
     startTimer();
   };
 
-  if (stories.length === 0 || !stories[currentIndex]) return null;
+  if (stories.length === 0) return null;
 
-  console.log('Current Story:', currentIndex, stories[currentIndex]);
+ // console.log('Current Story:', currentIndex, stories[currentIndex]);
   return (
     <div onClick={handleClick} ref={containerRef}>
       {isImageLoaded && (

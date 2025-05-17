@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <div>
       <StoryList onSelect={handleSelect} />
-      <StoryContainer key={storyData[0]?.id} stories={storyData}/>
+      <StoryContainer stories={storyData}/>
     </div>
   );
 };
