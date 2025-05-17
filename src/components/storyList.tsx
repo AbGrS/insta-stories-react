@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { Stories } from '../services/storyServices';
 import '../styles/global.css';
 
