@@ -7,6 +7,16 @@ html {
     background: transparent;  /* to make scrollbar invisible */
 }
 
+.profile-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fallback color */
+}
 .profile-image {
     width: 30px;
     height: 30px;

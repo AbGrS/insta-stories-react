@@ -4,9 +4,11 @@ import ProgressBar from './ProgressBar';
 
 interface StoryContainerProps {
   stories: Story[];
+  fetchNextStory: (prevStoryId: number) => void;
+  currentRunningId: number;
 }
 
-const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
+const StoryContainer: React.FC<StoryContainerProps> = ({ stories, fetchNextStory, currentRunningId}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,6 +37,7 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
       if (prev < stories.length - 1) {
         return prev + 1;
       }
+      fetchNextStory(currentRunningId);
       return prev;
     });
     
@@ -79,7 +82,7 @@ const StoryContainer: React.FC<StoryContainerProps> = ({ stories }) => {
       )}
 
       <img
-        src={`${stories[currentIndex].imgUrl}?id=${stories[currentIndex].id}`}
+        src={`${stories[currentIndex].imgUrl}?id=${Date.now()}`}
         alt="story"
         onLoad={handleImageLoad}
         style={{ width: '100%', height: '100%', objectFit: 'cover',  opacity: isImageLoaded ? 1 : 0,

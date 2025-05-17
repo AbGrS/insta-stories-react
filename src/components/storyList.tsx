@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { fetchStories } from '../services/storyServices';
+import React from 'react';
 import type { Stories, Story } from '../services/storyServices';
 import '../styles/global.css';
 
 interface StoryListProps {
-  onSelect: (story: Story[]) => void;
+  allStories: Stories[];
+  onSelect: (story: Stories) => void;
+  currentRunningId: number;
 }
 
-const StoryList: React.FC<StoryListProps> = ({ onSelect }) => {
-  const [allStories, seAllStories] = useState<Stories[]>([]);
-
-  useEffect(() => {
-    fetchStories().then(seAllStories);
-  }, []);
+const StoryList: React.FC<StoryListProps> = ({ allStories, onSelect, currentRunningId }) => {
 
   return (
     <div className="stories_wrapper">
       {allStories.map((story) => (
         <div
           key={story.id}
-          onClick={() => onSelect(story.stories)}
+          onClick={() => onSelect(story)}
           style={{margin: '10px', flex: '0 0 auto' }}
+          
         >
-          <div>
+          <div className='profile-image-wrapper' style={currentRunningId === story.id ? {outline: '2px solid grey'} : {outline: '2px solid blue'}}>
             <img src={story.profile_pic} alt="story" className='profile-image'/>
           </div>
         </div>
